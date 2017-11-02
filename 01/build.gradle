@@ -1,0 +1,9 @@
+// task helloworld {
+// 	doLast{
+// 		println 'helloworld!'
+// 	}
+// }
+
+task helloworld <<{
+	println 'helloworld!'
+}
