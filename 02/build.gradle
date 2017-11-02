@@ -3,15 +3,17 @@ task startSession << {
 }
 
 def chant(){
+	//隐含对Ant任务的使用
 	ant.echo(message: 'Repeat after me...')
 }
 
 3.times { 
+	// 动态任务的定义
 	task "yayGradle$it" <<{
 		println 'Gradle rocks'
 	}
 }
-
+// 任务依赖
 yayGradle0.dependsOn startSession
 yayGradle2.dependsOn yayGradle1, yayGradle0
-task 
+task gradleTherapy (dependsOn: yayGradle2)
