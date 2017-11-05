@@ -1,0 +1,23 @@
+//添加java插件
+apply plugin: 'java'
+
+// 版本号
+version = 0.1
+
+// 指定 jar 包中主类的位置
+jar {
+	manifest {
+		attributes 'Main-Class' : 'com.todo.ToDoApp'
+	}
+}
+
+repositories {
+	//mavenCentral()
+	maven {
+		url 'http://maven.aliyun.com/nexus/content/groups/public/'
+	}
+}
+
+dependencies {
+	compile group : 'org.apache.commons', name : 'commons-lang3', version : '3.1'
+}

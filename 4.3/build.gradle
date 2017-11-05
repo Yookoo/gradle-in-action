@@ -1,0 +1,11 @@
+
+
+task first << {
+	println "first"
+}
+
+task second << {
+	println "second"
+}
+
+first.finalizedBy second

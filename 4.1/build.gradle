@@ -1,0 +1,20 @@
+version = '0.1-SNAPSHOT'
+
+task printVersion {
+	
+	group = 'versioning'
+	description = 'Prints project version.'
+
+	doFirst {
+		println "Before reading the project version"
+	}
+
+	doLast {
+		println "Version : $version"
+	}
+}
+
+printVersion.doFirst { println "Frist action" }
+printVersion << { println "Last action" }
+
+printVersion << { logger.quiet "Version : $version" }
