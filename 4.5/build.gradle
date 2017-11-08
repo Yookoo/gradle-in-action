@@ -1,7 +1,46 @@
+// leftshift(闭包)方法已被弃用，并计划在5.0版本中删除。请使用任务。doLast(行动);
+
+task printVersion {
+	doLast {
+		println "Version : $version"
+	}
+}
+
+class ProjectVersion {
+	//主版本号
+	Integer major
+	
+	//副版本号
+	Integer minor
+	
+	//是否正式版
+	Boolean release
+
+	ProjectVersion (Integer major, Integer minor){
+		this.major = major
+		this.minor = minor
+		this.release = Boolean.FALSE
+	}
+
+	ProjectVersion (Integer major, Integer minor, Boolean release){
+		this.major = major
+		this.minor = minor
+		this.release = release
+	}
+
+	@Override
+	String toString () {
+		"$major.$minor${release ? '': '-SNAPSHOT'}"
+	}
+
+}
+
+
+
 //编写一个task配置
 
 //读取配置文件
-ext.versionFile - file('version.properties')
+ext.versionFile = file('version.properties')
 
 task loadVersion {
 	project.version = readVersion()
@@ -11,7 +50,7 @@ ProjectVersion readVersion() {
 
 	logger.quiet 'reading the version file'
 
-	if (!versionFile.exist()) {
+	if (!versionFile.exists()) {
 		
 		throw new GradleException("Required version file does not exist : $versionFile.canonicalPath")
 	}
@@ -23,3 +62,7 @@ ProjectVersion readVersion() {
 
 	new ProjectVersion(versionProps.major.toInteger(), versionProps.minor.toInteger(), versionProps.release.toBoolean())
 }
+
+
+
+
