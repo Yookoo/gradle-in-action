@@ -1,0 +1,84 @@
+
+
+class ProjectVersion {
+	//主版本号
+	Integer major
+	
+	//副版本号
+	Integer minor
+	
+	//是否正式版
+	Boolean release
+
+	ProjectVersion (Integer major, Integer minor){
+		this.major = major
+		this.minor = minor
+		this.release = Boolean.FALSE
+	}
+
+	ProjectVersion (Integer major, Integer minor, Boolean release){
+		this.major = major
+		this.minor = minor
+		this.release = release
+	}
+
+	@Override
+	String toString () {
+		"$major.$minor${release ? '': '-SNAPSHOT'}"
+	}
+
+}
+
+
+
+//编写一个task配置
+
+//读取配置文件
+ext.versionFile = file('version.properties')
+
+task loadVersion {
+	project.version = readVersion()
+}
+
+ProjectVersion readVersion() {
+
+	logger.quiet 'reading the version file'
+
+	if (!versionFile.exists()) {
+		
+		throw new GradleException("Required version file does not exist : $versionFile.canonicalPath")
+	}
+	Properties versionProps = new Properties()
+
+	versionFile.withInputStream { stream ->
+		versionProps.load(stream)
+	}
+
+	new ProjectVersion(versionProps.major.toInteger(), versionProps.minor.toInteger(), versionProps.release.toBoolean())
+}
+
+// 将项目版本转为生产版本
+task makeReleaseVersion {
+
+	group= 'versioning'
+	description = 'Make Project a Release Version!'
+	doLast {
+		
+		version.release = true
+		//Ant propertyfile 提供了一种便利的方式来修改属性文件
+		ant.propertyfile (file : versionFile) {
+			entry(key: 'release', type: 'string', operation : '=', value :'true')
+		}
+
+	}
+}
+
+
+
+// leftshift(闭包)方法已被弃用，并计划在5.0版本中删除。请使用任务。doLast(行动);
+
+task printVersion {
+	doLast {
+		println "Version : $version"
+	}
+}
