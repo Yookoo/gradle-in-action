@@ -1,0 +1,25 @@
+//编写一个task配置
+
+//读取配置文件
+ext.versionFile - file('version.properties')
+
+task loadVersion {
+	project.version = readVersion()
+}
+
+ProjectVersion readVersion() {
+
+	logger.quiet 'reading the version file'
+
+	if (!versionFile.exist()) {
+		
+		throw new GradleException("Required version file does not exist : $versionFile.canonicalPath")
+	}
+	Properties versionProps = new Properties()
+
+	versionFile.withInputStream { stream ->
+		versionProps.load(stream)
+	}
+
+	new ProjectVersion(versionProps.major.toInteger(), versionProps.minor.toInteger(), versionProps.release.toBoolean())
+}
