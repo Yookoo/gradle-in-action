@@ -1,5 +1,7 @@
 
 
+apply plugin : 'war'
+
 class ProjectVersion {
 	//主版本号
 	Integer major
@@ -95,3 +97,45 @@ task printVersion {
 		println "Version : $version"
 	}
 }
+
+
+
+
+
+//使用task类型来备份ZIP发布包
+
+//创建
+task createDistribution (type: Zip, dependsOn: makeReleaseVersion) {
+	
+//隐式引用War Task的输出
+	from war.outputs.files
+
+//把所有源文件都放在ZIP文件的src目录下
+	from (sourceSets*.allSource){
+		into 'src'
+	}
+//为ZIP文件添加版本
+	from(rootDir){
+		include versionFile.name
+	}
+
+}
+
+//
+task backupReleaseDistribution(type : Copy){
+
+	// 隐式引用createDistribution的输出
+	from createDistribution.outputs.files
+	into "$buildDir/backup"
+
+}
+
+task release(dependsOn: backupReleaseDistribution){
+
+	doLast{
+		logger.quiet 'Releasing the project...'
+	}
+}
+
+
+
