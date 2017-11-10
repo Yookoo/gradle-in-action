@@ -1,7 +1,4 @@
 
-
-apply plugin : 'war'
-
 class ProjectVersion {
 	//主版本号
 	Integer major
@@ -82,6 +79,7 @@ class ReleaseVersionTask extends DefaultTask {
 
 	}
 }
+
 task makeReleaseVersion (type : ReleaseVersionTask){
 
 	release= version.release
@@ -90,52 +88,51 @@ task makeReleaseVersion (type : ReleaseVersionTask){
 }
 
 
-// leftshift(闭包)方法已被弃用，并计划在5.0版本中删除。请使用任务。doLast(行动);
+//声明Task用来递增版本类别
+//主版本
+task incrementMajorVersion{
 
-task printVersion {
+	group= 'versioning'
+	description= 'increment project Major Version.'
+
 	doLast {
-		println "Version : $version"
+
+		String currentVersion = version.toString()
+
+		++version.major
+
+		String newVersion = version.toString()
+
+		logger.info "increment project Major Version: $currentVersion -> $newVersion."
+
+		ant.propertyfile(file: versionFile){
+			entry(key: 'major', type:'int', operation: '+' , value: 1)
+		}  
+	}
+}
+
+//副版本
+task incrementMinorVersion{
+
+	group = 'versioning'
+	description = 'increment project Minor Version.'
+
+	doLast {
+
+		String currentVersion = version.toString()
+
+		++version.minor
+
+		String newVersion = version.toString()
+
+		logger.info "increment project Minor Version: $currentVersion -> $newVersion."
+
+		ant.propertyfile(file: versionFile){
+			entry(key: 'minor', type:'int', operation: '+', value: 1)
+		}  
 	}
 }
 
 
-
-
-
-//使用task类型来备份ZIP发布包
-
-//创建
-task createDistribution (type: Zip, dependsOn: makeReleaseVersion) {
-	
-//隐式引用War Task的输出
-	from war.outputs.files
-
-//把所有源文件都放在ZIP文件的src目录下
-	from (sourceSets*.allSource){
-		into 'src'
-	}
-//为ZIP文件添加版本
-	from(rootDir){
-		include versionFile.name
-	}
-
-}
-
-//
-task backupReleaseDistribution(type : Copy){
-
-	// 隐式引用createDistribution的输出
-	from createDistribution.outputs.files
-	into "$buildDir/backup"
-
-}
-//打印版本发布完成
-task release(dependsOn: backupReleaseDistribution){
-
-	doLast{
-		logger.quiet 'Releasing the project...'
-	}
-}
-
-
+//将二者逻辑合并，写出通用的升级方法
 
