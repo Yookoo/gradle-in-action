@@ -134,5 +134,4 @@ task incrementMinorVersion{
 }
 
 
-//将二者逻辑合并，写出通用的升级方法
 

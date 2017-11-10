@@ -84,86 +84,45 @@ task makeReleaseVersion (type : ReleaseVersionTask){
 
 	release= version.release
 	destFile= versionFile
-
 }
 
-/*
-//声明Task用来递增版本类别
-//主版本
-task incrementMajorVersion{
-
-	group= 'versioning'
-	description= 'increment project Major Version.'
-
-	doLast {
-
-		String currentVersion = version.toString()
-
-		++version.major
-
-		String newVersion = version.toString()
-
-		logger.info "increment project Major Version: $currentVersion -> $newVersion."
-
-		ant.propertyfile(file: versionFile){
-			entry(key: 'major', type:'int', operation: '+' , value: 1)
-		}  
-	}
-}
-
-//副版本
-task incrementMinorVersion{
-
-	group = 'versioning'
-	description = 'increment project Minor Version.'
-
-	doLast {
-
-		String currentVersion = version.toString()
-
-		++version.minor
-
-		String newVersion = version.toString()
-
-		logger.info "increment project Minor Version: $currentVersion -> $newVersion."
-
-		ant.propertyfile(file: versionFile){
-			entry(key: 'minor', type:'int', operation: '+', value: 1)
-		}  
-	}
-}
-*/
 
 //将二者逻辑合并，写出通用的升级方法
-task.addRule("Pattern: increment<Classifier>Version - Increments the project version classifier."){
+tasks.addRule("Pattern: increment<Classifier>Version"){ String taskName -> 
 
-	String taskName -> if (taskName.startsWith('increment') && taskName.endsWith('Version')) {
+	if (taskName.startsWith('increment') && taskName.endsWith('Version')) {
 		
-		task(taskName) << {
+ 		task(taskName) << {
 
 			String classifier = (taskName - 'increment' - 'Version').toLowerCase()
 
 			String currentVersion = version.toString()
 
 			switch(classifier) {
-				case 'major': 
-					++ version.major
-				break
+				case 'major': ++version.major
+							break
 				
-				case 'minor':
-					++ version.minor
-				break
+				case 'minor': ++version.minor
+							break
 					
 				default: throw new GradleException("Invalid version type $classifier. Allowed type:['Major','Minor']")
+				}
+			String newVersion = version.toString()
 
-				String newVersion = version.toString()
+			logger.info "increment project Minor Version: $currentVersion -> $newVersion."
 
-				logger.info "increment project Minor Version: $currentVersion -> $newVersion."
-
-				ant.propertyfile(file: versionFile){
-					entry(key: 'minor', type:'int', operation: '+', value: 1)
-				}  
+			ant.propertyfile(file: versionFile){
+				entry(key: 'minor', type:'int', operation: '+', value: 1)
 			}
 		}
 	}
+}
+
+//DEMO
+tasks.addRule("Pattern: ping<ID>") { String taskName ->
+    if (taskName.startsWith("ping")) {
+        task(taskName) << {
+            println "Pinging: " + (taskName - 'ping')
+        }
+    }
 }
