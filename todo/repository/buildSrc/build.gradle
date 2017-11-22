@@ -1,0 +1,7 @@
+apply plugin: 'groovy'
+version=1.0
+dependencies {
+    // 添加依赖
+    compile gradleApi()
+    compile localGroovy()
+}

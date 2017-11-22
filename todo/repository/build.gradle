@@ -1,0 +1,35 @@
+apply plugin: 'groovy'
+//announce 插件显示关于测试时间的通知
+apply plugin: 'announce'
+
+dependencies {
+    compile project(':model')
+    compile 'com.h2database:h2:1.4.196'
+    //添加本地jar包
+    compile fileTree(dir:'./buildSrc/build/libs',include:['*.jar'])
+}
+
+//单元测试参数设置
+test {
+    systemProperty 'items', '20'
+//    minHeapSize = '128m'
+//    maxHeapSize = '256m'
+//    jvmArgs '-Xx:MaxPermSize=128m'
+
+    testLogging {
+        //输出控制台提示信息
+        //showStandardStreams = true
+        //显示异常跟踪站信息
+        //exceptionFormat 'full'
+        //记录特定的测试事件
+        events 'started','passed','skipped','failed'
+    }
+
+    //addTestListener(new NotificationTestListener(project))
+}
+
+//task hello{
+//    doLast{
+//       System.out.println(new Date())
+//    }
+//}

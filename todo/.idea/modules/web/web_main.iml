@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":web:main" external.linked.project.path="$MODULE_DIR$/../../../web" external.root.project.path="$MODULE_DIR$/../../../web" external.system.id="GRADLE" external.system.module.group="com.edu.gradle" external.system.module.type="sourceSet" external.system.module.version="0.1" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web Gradle : web-0.1.war">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/../../../web/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/../../../web/src/main/webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../web/build/classes/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../web/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../../web/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../web/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../repository/buildSrc/build/libs/buildSrc-1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="repository_main" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="module" module-name="model_main" />
+    <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.196" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.servlet:jstl:1.1.2" level="project" />
+  </component>
+</module>

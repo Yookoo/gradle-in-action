@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="buildSrc:main" external.linked.project.path="$MODULE_DIR$/../../repository/buildSrc" external.root.project.path="$MODULE_DIR$/../../repository" external.system.id="GRADLE" external.system.module.group="" external.system.module.type="sourceSet" external.system.module.version="" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../repository/buildSrc/build/classes/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../repository/buildSrc/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../repository/buildSrc/src/main/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../repository/buildSrc/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../repository/buildSrc/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/3.5/generated-gradle-jars/gradle-api-3.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/Plugins/gradle-3.5/lib/groovy-all-2.4.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/Plugins/gradle-3.5/lib/gradle-installation-beacon-3.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/Plugins/gradle-3.5/lib/gradle-installation-beacon-3.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://D:/Plugins/gradle-3.5/src/installation-beacon" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

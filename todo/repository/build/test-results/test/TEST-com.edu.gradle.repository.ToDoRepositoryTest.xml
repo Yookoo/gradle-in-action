@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.edu.gradle.repository.ToDoRepositoryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2017-11-21T10:13:38" hostname="zhuky-PC" time="0.0">
+  <properties/>
+  <testcase name="delete" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="insert" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="findAll" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="update" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="findAllActive" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="findById" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <testcase name="findAllCompleted" classname="com.edu.gradle.repository.ToDoRepositoryTest" time="0.0"/>
+  <system-out><![CDATA[Creating 20todo items!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

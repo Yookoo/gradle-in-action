@@ -1,0 +1,35 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : com.edu.gradle : web-0.1.war (exploded)">
+    <output-path>$PROJECT_DIR$/web/build/libs/exploded/web-0.1.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$/web">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/web/build/libs/exploded/web-0.1.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="web_main/web/Web Gradle : web-0.1.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="web_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/web/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/repository/buildSrc/build/libs/buildSrc-1.0.jar" />
+          <element id="archive" name="com.edu.gradle-repository-0.1.jar">
+            <element id="module-output" name="repository_main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/repository/build/resources/main" />
+          </element>
+          <element id="archive" name="com.edu.gradle-model-0.1.jar">
+            <element id="module-output" name="model_main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/model/build/resources/main" />
+          </element>
+          <element id="library" level="project" name="Gradle: com.h2database:h2:1.4.196" />
+          <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.1.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
